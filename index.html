@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahshid Zahedi — Portfolio</title>
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #ffffff;
+    --bg2:      #f5f5f5;
+    --ink:      #1a1a1a;
+    --ink2:     #555;
+    --ink3:     #999;
+    --accent:   #2a52e8;
+    --hover:    #1E40D6;
+    --accent-light: #eef1fd;
+    --border:   rgba(0,0,0,0.1);
+    --radius:   16px;
+    --header-h: 64px;
+    --back-h:   40px;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─────────────────── HEADER ─────────────────── */
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: var(--header-h);
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; padding: 0 5%;
+  }
+  .header-inner {
+    width: 100%; max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-decoration: none; cursor: pointer;
+    transition: color 0.2s;
+  }
+  .logo:hover { color: var(--hover); }
+  nav { display: flex; align-items: center; gap: 2rem; }
+  nav a {
+    font-size: 0.875rem; font-weight: 400;
+    color: var(--ink2); text-decoration: none;
+    cursor: pointer; transition: color 0.2s;
+  }
+  nav a:hover { color: var(--hover); }
+
+  /* ─────────────────── BACK BAR ─────────────────── */
+  #back-bar {
+    display: none;
+    position: fixed; top: var(--header-h); left: 0; right: 0; z-index: 99;
+    height: var(--back-h);
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0 5%;
+  }
+  .back-inner {
+    max-width: 1200px; margin: 0 auto;
+    height: 100%; display: flex; align-items: center;
+  }
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: none; border: none; cursor: pointer;
+    font-size: 0.95rem; font-weight: 500; color: var(--ink2);
+    font-family: 'Poppins', sans-serif;
+    padding: 0; transition: color 0.2s;
+  }
+  .back-btn:hover { color: var(--hover); }
+  .back-btn svg { width: 18px; height: 18px; }
+
+  /* ─────────────────── PAGES ─────────────────── */
+  .page { display: none; }
+  .page.active { display: block; min-height: calc(100vh - 80px); }
+  #page-home { padding-top: var(--header-h); }
+  #page-all,
+  #page-case,
+  #page-about,
+  #page-painting,
+  #page-now,
+  #page-contact { padding-top: calc(var(--header-h) + var(--back-h)); }
+
+  /* ─────────────────── HERO ─────────────────── */
+  .hero {
+    padding: 6rem 5% 4.5rem;
+    max-width: 1200px; margin: 0 auto;
+    text-align: center;
+  }
+  .hero-greeting {
+    font-size: 1rem; font-weight: 400; color: var(--ink2);
+    margin-bottom: 1.25rem;
+  }
+  .hero-greeting span { font-size: 1.1rem; }
+  .hero-bio {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #202020;
+    max-width: 820px; margin: 0 auto 1.75rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: #fff;
+    padding: 13px 28px; border-radius: 100px;
+    font-size: 0.9rem; font-weight: 500;
+    border: none; cursor: pointer; text-decoration: none;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .hero-cta:hover {
+    background: var(--hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(42,82,232,0.28);
+  }
+  .hero-cta svg { width: 16px; height: 16px; }
+
+  /* ─────────────────── SECTION LABEL ─────────────────── */
+  .section-label {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 1.25rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 1.75rem;
+    letter-spacing: -0.02em;
+  }
+  .section-label::before {
+    content: '';
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--accent); flex-shrink: 0;
+  }
+
+  /* ─────────────────── DESIGNS SECTION ─────────────────── */
+  .section-designs {
+    padding: 3.5rem 5%;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  /* ─────────────────── PROJECT CARDS ─────────────────── */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 640px) { .project-grid { grid-template-columns: 1fr; } }
+
+  .project-card {
+    background: #fff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+  }
+  .card-thumb {
+    width: 100%; aspect-ratio: 16/10;
+    overflow: hidden; display: flex;
+    align-items: center; justify-content: center;
+  }
+  .card-thumb img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .project-card:hover .card-thumb img { transform: scale(1.03); }
+  .card-body { padding: 20px 22px 22px; }
+  .card-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem; color: var(--ink);
+    margin-bottom: 10px; line-height: 1.3;
+  }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 0.75rem; font-weight: 400;
+    color: var(--ink2); border: 1px solid var(--border);
+    padding: 3px 10px; border-radius: 100px;
+    background: var(--bg);
+  }
+
+  /* Show more */
+  .show-more-wrap { margin-top: 1.75rem; }
+  .show-more-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.9rem; font-weight: 500; color: var(--accent);
+    background: none; border: none; cursor: pointer; padding: 0;
+    transition: color 0.2s, gap 0.2s;
+  }
+  .show-more-btn:hover { color: var(--hover); gap: 10px; }
+  .show-more-btn svg { width: 15px; height: 15px; }
+
+  /* ─────────────────── MORE SECTION ─────────────────── */
+  .section-more {
+    padding: 3.5rem 5% 2rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .more-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 640px) { .more-grid { grid-template-columns: 1fr; } }
+  .more-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px; cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .more-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .more-card-icon {
+    width: 40px; height: 40px;
+    background: var(--accent-light);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px; color: var(--accent);
+  }
+  .more-card-icon svg { width: 20px; height: 20px; }
+  .more-card h3 { font-size: 0.95rem; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+  .more-card p { font-size: 0.82rem; color: var(--ink3); }
+
+  /* ─────────────────── CONTACT BANNER ─────────────────── */
+  .contact-section {
+    padding: 0 0 4rem;
+    max-width: 100%;
+  }
+  .contact-banner {
+    background: #D8DEFF;
+    border-radius: 20px;
+    padding: 3rem 3.5rem;
+    display: flex; align-items: center;
+    justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+    position: relative; overflow: hidden;
+  }
+  .contact-banner::before {
+    content: '';
+    position: absolute; right: -40px; bottom: -40px;
+    width: 200px; height: 200px; border-radius: 50%;
+    border: 40px solid rgba(42,82,232,0.08);
+    pointer-events: none;
+  }
+  .contact-banner::after {
+    content: '';
+    position: absolute; right: 80px; top: -60px;
+    width: 140px; height: 140px; border-radius: 50%;
+    border: 30px solid rgba(42,82,232,0.05);
+    pointer-events: none;
+  }
+  .contact-text h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    color: #202020; margin-bottom: 8px; font-weight: 700;
+  }
+  .contact-text p { font-size: 0.9rem; color: #202020; }
+  .contact-btns { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: #fff;
+    padding: 11px 22px; border-radius: 100px;
+    font-size: 0.875rem; font-weight: 500;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--hover); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--ink);
+    padding: 11px 22px; border-radius: 100px;
+    font-size: 0.875rem; font-weight: 500;
+    text-decoration: none; border: 1px solid rgba(0,0,0,0.2);
+    cursor: pointer; transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-outline:hover { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.3); }
+
+  /* ─────────────────── FOOTER ─────────────────── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 2rem 5%;
+    margin-top: 0;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem; color: var(--ink);
+  }
+  .footer-socials { display: flex; align-items: center; gap: 18px; }
+  .footer-socials a {
+    color: var(--ink3); transition: color 0.2s;
+    display: flex; align-items: center;
+    text-decoration: none;
+  }
+  .footer-socials a:hover { color: var(--hover); }
+  .footer-socials svg { width: 20px; height: 20px; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-size: 0.85rem; color: var(--ink2);
+    text-decoration: none; cursor: pointer;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--hover); }
+
+  /* ─────────────────── ALL PROJECTS ─────────────────── */
+  .all-projects-wrap {
+    max-width: 1200px; margin: 0 auto;
+    padding: 3rem 5% 5rem;
+  }
+  .page-heading {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    color: #202020;
+    margin-bottom: 2rem;
+  }
+  .page-subtitle {
+    font-size: 0.9rem; color: var(--ink2); margin-bottom: 2.5rem;
+  }
+  .all-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 640px) { .all-grid { grid-template-columns: 1fr; } }
+
+  /* ─────────────────── CASE STUDY — BEHANCE STYLE ─────────────────── */
+  
+
+  .case-wrap { width: 100%; padding: 0; background: #ffffff; }
+
+  .case-header { display: none; }
+  .case-header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 600;
+    color: #202020; margin-bottom: 14px; line-height: 1.25;
+  }
+  .case-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .case-tags .tag {
+    background: var(--bg);
+    border-color: var(--border);
+    color: var(--ink2);
+  }
+
+  /* Full-bleed image scroll — Behance method */
+  .case-images {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    background: #ffffff;
+    padding: 0;
+  }
+  .case-images img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0;
+    border: none;
+  }
+
+  /* Dark footer on case page */
+  
+    
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 4rem;
+  }
+
+  /* Back bar dark variant on case page */
+  #page-case ~ #back-bar { background: rgba(17,17,17,0.92); border-bottom-color: rgba(255,255,255,0.08); }
+  #page-case ~ #back-bar .back-btn { color: rgba(255,255,255,0.55); }
+  #page-case ~ #back-bar .back-btn:hover { color: #fff; }
+
+  /* ─────────────────── ABOUT ─────────────────── */
+  .about-wrap {
+    max-width: 800px; margin: 0 auto;
+    padding: 3rem 5% 5rem; text-align: center;
+  }
+  .about-wrap p {
+    font-size: 1rem; color: var(--ink2); line-height: 1.8; margin-bottom: 1rem;
+  }
+
+  /* ─────────────────── PAINTING ─────────────────── */
+  .painting-wrap {
+    max-width: 900px; margin: 0 auto;
+    padding: 3rem 5% 5rem; text-align: center;
+  }
+  .painting-wrap .page-subtitle { margin-bottom: 3rem; }
+  .painting-placeholder {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius);
+    padding: 5rem 2rem;
+    color: var(--ink3); font-size: 0.9rem;
+  }
+
+  /* ─────────────────── NOW ─────────────────── */
+  .now-wrap {
+    max-width: 680px; margin: 0 auto;
+    padding: 3rem 5% 5rem;
+  }
+  .now-wrap .page-subtitle { margin-bottom: 2.5rem; }
+  .now-item {
+    border-left: 2px solid var(--accent);
+    padding: 0 0 2rem 1.5rem; margin-bottom: 0;
+  }
+  .now-item h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+  .now-item p { font-size: 0.875rem; color: var(--ink2); line-height: 1.7; }
+
+
+  /* ─────────────────── ANIMATIONS ─────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up   { animation: fadeUp 0.5s ease both; }
+  .delay-1   { animation-delay: 0.07s; }
+  .delay-2   { animation-delay: 0.14s; }
+  .delay-3   { animation-delay: 0.21s; }
+
+
+  @media (max-width: 640px) {
+    nav#main-nav { display: none; }
+    .hamburger { display: flex; }
+  }
+
+  @media (max-width: 768px) {
+    .hero-bio { font-size: 16px; line-height: 1.5; letter-spacing: -0.01em; }
+    .hero { padding: 3.5rem 5% 2.5rem; }
+    .hero-greeting { font-size: 0.85rem; }
+  }
+  @media (max-width: 500px) {
+    .contact-banner { padding: 2rem; }
+    nav { gap: 1rem; }
+  }
+  @media (max-width: 600px) {
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .footer-socials { gap: 14px; }
+  }
+
+  /* ─────────────────── ABOUT ME PAGE ─────────────────── */
+  #page-about { padding-top: calc(var(--header-h) + var(--back-h)); background: var(--bg); }
+
+  .about-page { max-width: 1200px; margin: 0 auto; padding: 3rem 5% 4rem; }
+
+  /* My Story */
+  .about-story {
+    display: grid; grid-template-columns: 1fr 340px;
+    gap: 3rem; align-items: center;
+    padding-bottom: 3.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3.5rem;
+  }
+
+  @media (max-width: 640px) {
+    nav#main-nav { display: none; }
+    .hamburger { display: flex; }
+  }
+
+  @media (max-width: 768px) { .about-story { grid-template-columns: 1fr; } }
+  .about-story-text h2 { font-size: 1.5rem; font-weight: 600; color: #202020; margin-bottom: 1.1rem; }
+  .about-story-text p { font-size: 0.95rem; color: #202020; line-height: 1.85; }
+  .about-photo-wrap { position: relative; }
+  .about-photo-wrap img.profile-photo {
+    width: 100%; border-radius: 32px;
+    display: block; object-fit: cover;
+  }
+
+  /* Current Focus */
+  .about-section { padding-bottom: 3.5rem; border-bottom: 1px solid var(--border); margin-bottom: 3.5rem; }
+  .about-section h2 { font-size: 1.5rem; font-weight: 600; color: #202020; margin-bottom: 1.25rem; }
+  .focus-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .focus-pill {
+    border: 1px solid var(--border); border-radius: 100px;
+    padding: 5px 16px; font-size: 0.82rem; color: var(--ink2);
+    background: transparent;
+  }
+  .focus-items { display: flex; flex-direction: column; gap: 0.85rem; }
+  .focus-item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.92rem; color: #202020; line-height: 1.65; }
+  .focus-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 7px; }
+  .focus-item strong { color: #202020; font-weight: 600; }
+
+  /* Language & Growth */
+  .lang-grid { display: block; }
+  .lang-text p { font-size: 0.92rem; color: #202020; line-height: 1.85; }
+  .lang-text p strong { color: #202020; font-weight: 600; }
+  .lang-illustration { display: none; }
+
+  /* Vision */
+  .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 640px) { .vision-grid { grid-template-columns: 1fr; } }
+  .vision-card {
+    border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px 20px; font-size: 0.88rem;
+    color: #202020; line-height: 1.65;
+    background: #fff;
+  }
+
+  /* Outside of Work */
+  .outside-header { margin-bottom: 1rem; }
+  .outside-text { max-width: 100%; }
+  .outside-text p { font-size: 0.92rem; color: #202020; line-height: 1.8; }
+  .paintings-cta { display: none; }
+
+
+
+  .outside-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; margin-top: 1.5rem;
+  }
+  @media (max-width: 640px) { .outside-grid { grid-template-columns: repeat(2, 1fr); } }
+  .outside-grid img {
+    width: 100%; aspect-ratio: 3/4;
+    object-fit: contain; background: #f8f8f8;
+    border-radius: 12px; display: block;
+    border: 1px solid var(--border);
+    transition: transform 0.3s; cursor: pointer;
+  }
+  .outside-grid img:hover { transform: scale(1.02); }
+
+
+
+
+  /* ─────────────────── CONTACT PAGE ─────────────────── */
+  #page-contact { background: var(--bg); }
+  .contact-page { max-width: 1200px; margin: 0 auto; padding: 3rem 5% 5rem; text-align: left; }
+  .contact-page h1 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 600; color: #202020; margin-bottom: 2rem; text-align: left; display: block; width: 100%; }
+
+  .contact-card {
+    display: grid; grid-template-columns: 260px 1fr;
+    gap: 0; border: 1px solid var(--border);
+    border-radius: 18px; overflow: hidden; background: #fff;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 640px) { .contact-card { grid-template-columns: 1fr; } }
+
+  .contact-photo {
+    width: 100%; height: 100%; min-height: 280px;
+    object-fit: cover; object-position: top center; display: block;
+  }
+  @media (max-width: 640px) {
+    .contact-photo { height: 300px; object-fit: cover; object-position: top center; }
+  }
+
+  .contact-info { padding: 32px 36px; display: flex; flex-direction: column; gap: 1.6rem; }
+
+  .contact-status {
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  @media (max-width: 640px) {
+    .contact-status { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.92rem; font-weight: 500; color: #16a34a;
+  }
+  .status-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #22c55e; flex-shrink: 0;
+    box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+  }
+  .contact-location {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 0.875rem; color: #202020;
+  }
+  .contact-location svg { width: 18px; height: 18px; color: #202020; }
+
+  .contact-dm { font-size: 0.95rem; color: #202020; font-weight: 400; }
+  .contact-dm a {
+    color: var(--accent); text-decoration: underline;
+    text-underline-offset: 3px; font-weight: 500;
+  }
+  .contact-dm a:hover { color: var(--hover); }
+  .contact-via { font-size: 0.9rem; color: #202020; font-weight: 400; }
+  .contact-methods { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+  .contact-method {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.9rem; color: #202020; font-weight: 400;
+  }
+  .contact-method svg { width: 16px; height: 16px; color: var(--ink2); flex-shrink: 0; }
+
+  .contact-quote {
+    border: 1px solid var(--border);
+    border-radius: 14px; padding: 22px 28px;
+    background: #fff;
+    font-size: 0.95rem; color: #202020; line-height: 1.7;
+  }
+
+
+  /* ── HAMBURGER MENU ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 200;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    flex-direction: column;
+    padding: 2.5rem 8%;
+    gap: 0;
+    z-index: 999;
+    overflow-y: auto;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--ink);
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--hover); }
+  .mobile-menu a:hover { color: var(--hover); }
+
+  @media (max-width: 640px) {
+    #main-nav { display: none !important; }
+    .hamburger { display: flex; }
+  }
+
+
+  @keyframes wave {
+    0%   { transform: rotate(0deg);   }
+    10%  { transform: rotate(14deg);  }
+    20%  { transform: rotate(-8deg);  }
+    30%  { transform: rotate(14deg);  }
+    40%  { transform: rotate(-4deg);  }
+    50%  { transform: rotate(10deg);  }
+    60%  { transform: rotate(0deg);   }
+    100% { transform: rotate(0deg);   }
+  }
+  .wave {
+    display: inline-block;
+    transform-origin: 70% 70%;
+    animation: wave 2s ease-in-out infinite;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <div class="header-inner">
+    <span class="logo" onclick="showPage('home')">Mahshid Zahedi</span>
+    <nav id="main-nav">
+      <a onclick="showPage('all')">Designs</a>
+      <a onclick="showPage('about')">About Me</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile menu — outside header so z-index is not bounded by header stacking context -->
+<div class="mobile-menu" id="mobile-menu">
+  <a onclick="toggleMenu();setTimeout(()=>showPage('all'),50)">Designs</a>
+  <a onclick="toggleMenu();setTimeout(()=>showPage('about'),50)">About Me</a>
+  <a onclick="toggleMenu();setTimeout(()=>showPage('contact'),50)">Contact</a>
+</div>
+
+<!-- ══ BACK BAR (inner pages only) ══ -->
+<div id="back-bar">
+  <div class="back-inner">
+    <button class="back-btn" onclick="goBack()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M19 12H5M5 12l7 7M5 12l7-7"/>
+      </svg>
+      Back
+    </button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     HOME
+══════════════════════════════════════ -->
+<div class="page active" id="page-home">
+
+  <section class="hero">
+    <p class="hero-greeting fade-up">Hi, I'm Mahshid Zahedi <span class="wave">👋</span></p>
+    <p class="hero-bio fade-up delay-1">
+      Product Designer crafting intuitive B2C &amp; B2B experiences powered by data-driven insights and AI integration. I specialize in transforming complex workflows into seamless, high-growth digital products.
+    </p>
+    <button class="hero-cta fade-up delay-2" onclick="showPage('all')">
+      My case studies
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
+  </section>
+
+  <section class="section-designs" id="section-designs">
+    <div class="section-label">Selected Designs</div>
+    <div class="project-grid" id="home-grid"></div>
+    <div class="show-more-wrap">
+      <button class="show-more-btn" onclick="showPage('all')">
+        Show more
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <section class="section-more" style="padding-bottom:1rem;">
+    <div class="section-label">More</div>
+    <div class="more-grid">
+
+      <div class="more-card" onclick="showPage('about')">
+        <div class="more-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+        <h3>About Me</h3>
+        <p>Personality &amp; Experience</p>
+      </div>
+
+      <div class="more-card" onclick="showPage('about'); setTimeout(()=>document.getElementById('outside-of-work').scrollIntoView({behavior:'smooth'}),80)">
+        <div class="more-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 1 0-3-3Z"/>
+            <path d="M9 8c-2 3-4 3.5-7 4l8 8c1-.5 3.5-2 4-7"/>
+            <path d="M14.5 17.5 4.5 15"/>
+          </svg>
+        </div>
+        <h3>Painting</h3>
+        <p>Personal illustrations</p>
+      </div>
+
+      <div class="more-card" onclick="showPage('about'); setTimeout(()=>document.getElementById('current-focus').scrollIntoView({behavior:'smooth'}),80)">
+        <div class="more-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="4" width="18" height="18" rx="2"/>
+            <path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+        </div>
+        <h3>Now</h3>
+        <p>What I'm doing now</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="contact-section" id="section-contact" style="padding: 0 5% 0; max-width:1200px; margin: 0 auto 4rem;">
+    <div class="contact-banner">
+      <div class="contact-text">
+        <h2>Let's build better products together.</h2>
+        <p>I'm open to new opportunities and collaborations.</p>
+      </div>
+      <div class="contact-btns">
+        <a class="btn-primary" href="https://www.linkedin.com/in/mahshid-zahedi-885807258" target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+          View LinkedIn
+        </a>
+        <a class="btn-outline" href="mailto:mahshidzahedi79@gmail.com">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+          Email Me
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     ALL PROJECTS
+══════════════════════════════════════ -->
+<div class="page" id="page-all">
+  <div class="all-projects-wrap">
+    <h1 class="page-heading fade-up">Designs</h1>
+    <div class="all-grid" id="all-grid"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     CASE STUDY
+══════════════════════════════════════ -->
+<div class="page" id="page-case">
+  <div class="case-wrap">
+    <div class="case-header">
+      <h1 id="case-title"></h1>
+      <div class="case-tags" id="case-tags"></div>
+    </div>
+    <div class="case-images" id="case-images"></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     ABOUT ME
+══════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="about-page">
+
+    <h1 class="page-heading" style="margin-bottom:2rem;">About Me</h1>
+
+    <!-- My Story -->
+    <div class="about-story">
+      <div class="about-story-text">
+        <h2>My Story</h2>
+        <p>I come from a Computer Science background, where I explored different areas of technology including frontend development and game design. Along the way, I discovered that what excites me most is the balance between creativity and problem-solving, which naturally led me toward design.</p>
+        <p style="margin-top:1rem">Today, I'm especially interested in creating experiences that connect thoughtful design with practical implementation.</p>
+      </div>
+      <div class="about-photo-wrap">
+        <img class="profile-photo" src="images/img_001.png" alt="Mahshid Zahedi">
+      </div>
+    </div>
+
+    <!-- Current Focus -->
+    <div id="current-focus"></div>
+    <div class="about-section">
+      <h2>Current Focus</h2>
+      <div class="focus-pills">
+        <span class="focus-pill">Learning</span>
+        <span class="focus-pill">Building</span>
+        <span class="focus-pill">Evolving</span>
+      </div>
+      <div class="focus-items">
+        <div class="focus-item"><div class="focus-dot"></div><span>Exploring AI-powered tools such as <strong>Claude</strong>, <strong>Cursor</strong>, and <strong>Bolt</strong> to better connect design workflows with development.</span></div>
+        <div class="focus-item"><div class="focus-dot"></div><span>Learning <strong>Python</strong> and working with <strong>data visualization</strong> using Pandas.</span></div>
+        <div class="focus-item"><div class="focus-dot"></div><span>Improving my <strong>GitHub</strong> workflow and implementation skills.</span></div>
+        <div class="focus-item"><div class="focus-dot"></div><span>Moving toward becoming a <strong>Design Engineer</strong> by combining design thinking with technical execution.</span></div>
+      </div>
+    </div>
+
+    <!-- Language & Growth -->
+    <div class="about-section">
+      <h2>Language &amp; Growth</h2>
+      <div class="lang-grid">
+        <div class="lang-text">
+          <p>To improve my English communication skills for international collaboration and future opportunities, I recently took the <strong>TOEFL</strong> exam and scored <strong>100</strong>.</p>
+          <p style="margin-top:0.85rem">I believe growth goes beyond technical skills — communication, curiosity, and adaptability are equally important parts of becoming a better designer and creator.</p>
+        </div>
+        <div class="lang-illustration">
+          <img src="images/img_002.png" alt="Language & Growth illustration">
+        </div>
+      </div>
+    </div>
+
+    <!-- Vision & Future Goals -->
+    <div class="about-section">
+      <h2>Vision &amp; Future Goals</h2>
+      <div class="vision-grid">
+        <div class="vision-card">Study how to design interfaces where AI acts as a collaborative partner rather than just a tool.</div>
+        <div class="vision-card">Bridge the gap between design and implementation by building fully functional intelligent systems.</div>
+        <div class="vision-card">Publish research and articles related to Computer Science, Design, and user experience.</div>
+        <div class="vision-card">To move toward mentorship and help other designers grow through shared knowledge.</div>
+      </div>
+    </div>
+
+    <!-- Outside of Work -->
+    <div id="outside-of-work"></div>
+    <div class="about-section" style="border-bottom:none; margin-bottom:0; padding-bottom:0;">
+      <h2>Outside of Work</h2>
+      <div class="outside-header">
+        <div class="outside-text">
+          <p>Outside of design and technology, painting is one of my favorite creative outlets. I enjoy expressing ideas visually and experimenting with different forms of creativity.</p>
+        </div>
+        <div class="paintings-cta" onclick="showPage('painting')">
+          <img src="images/img_003.png" alt="View my paintings">
+        </div>
+      </div>
+      <div class="outside-grid">
+        <img src="images/img_004.jpg" alt="Painting 1">
+        <img src="images/img_005.jpg" alt="Painting 2">
+        <img src="images/img_006.jpg" alt="Painting 3">
+        <img src="images/img_007.jpg" alt="Painting 4">
+        <img src="images/img_008.jpg" alt="Painting 5">
+        <img src="images/img_009.jpg" alt="Painting 6">
+      </div>
+    </div>
+
+    <!-- Contact — identical to homepage -->
+    <div class="contact-section" style="margin-top:3.5rem; padding:0;">
+      <div class="contact-banner">
+        <div class="contact-text">
+          <h2>Let's build better products together.</h2>
+          <p>I'm open to new opportunities and collaborations.</p>
+        </div>
+        <div class="contact-btns">
+          <a class="btn-primary" href="https://www.linkedin.com/in/mahshid-zahedi-885807258" target="_blank">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            View LinkedIn
+          </a>
+          <a class="btn-outline" href="mailto:mahshidzahedi79@gmail.com">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+            Email Me
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PAINTING
+══════════════════════════════════════ -->
+<div class="page" id="page-painting">
+  <div class="painting-wrap">
+    <h1 class="page-heading">Painting</h1>
+    <p class="page-subtitle">Personal illustrations &amp; artwork</p>
+    <div class="painting-placeholder">🎨 Artwork coming soon</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     NOW
+══════════════════════════════════════ -->
+<div class="page" id="page-now">
+  <div class="now-wrap">
+    <h1 class="page-heading">Now</h1>
+    <p class="page-subtitle">What I'm currently focused on</p>
+    <div class="now-item">
+      <h3>Product Design</h3>
+      <p>Working on redesigning complex insurance workflow applications, focusing on reducing cognitive load and improving task completion rates.</p>
+    </div>
+    <div class="now-item">
+      <h3>Learning</h3>
+      <p>Deepening my understanding of design systems and component-driven design at scale.</p>
+    </div>
+    <div class="now-item">
+      <h3>Open to opportunities</h3>
+      <p>Looking for product design roles with a strong focus on B2B SaaS or fintech products.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script>
+// ── PROJECT DATA (images load from ./images/ folder) ──
+const projects = [
+  {
+    id: 'p1',
+    title: 'Insurance Vehicle Assessment App Redesign',
+    tags: ['Application', 'Insurance', 'Case study'],
+    coverBg: '#D8DEFF',
+    cover: 'images/img_011.jpg',
+    images: [
+      'images/img_012.jpg',
+      'images/img_013.jpg',
+      'images/img_014.jpg',
+      'images/img_015.jpg',
+      'images/img_016.jpg',
+      'images/img_017.jpg',
+      'images/img_018.jpg',
+      'images/img_019.jpg',
+      'images/img_020.jpg',
+      'images/img_021.jpg',
+      'images/img_022.jpg'
+    ]
+  },
+  {
+    id: 'p2',
+    title: 'Insurance Issuance Panel',
+    tags: ['Panel', 'Insurance', 'Case study'],
+    coverBg: '#FBF8D7',
+    cover: 'images/img_023.jpg',
+    images: [
+      'images/img_024.jpg',
+      'images/img_025.jpg',
+      'images/img_026.jpg',
+      'images/img_027.jpg',
+      'images/img_028.jpg',
+      'images/img_029.jpg',
+      'images/img_030.jpg',
+      'images/img_031.jpg',
+      'images/img_032.jpg',
+      'images/img_033.jpg'
+    ]
+  },
+  {
+    id: 'p3',
+    title: 'Iranian Poshesh Main Website Redesign',
+    tags: ['Website', 'Insurance', 'Brief'],
+    coverBg: '#E2F3FA',
+    cover: 'images/img_034.jpg',
+    images: [
+      'images/img_035.jpg',
+      'images/img_036.jpg',
+      'images/img_037.jpg',
+      'images/img_038.jpg',
+      'images/img_039.jpg'
+    ]
+  }
+,
+  {
+    id: 'p4',
+    title: 'Implement Design System Based on Requirements',
+    tags: ['Design System', 'Case study', 'Web & Mobile'],
+    coverBg: '#E8F5E9',
+    cover: 'images/img_040.jpg',
+    images: [
+      'images/img_041.jpg',
+      'images/img_042.jpg',
+      'images/img_043.jpg',
+      'images/img_044.jpg',
+      'images/img_045.jpg',
+      'images/img_046.jpg',
+      'images/img_047.jpg',
+      'images/img_048.jpg',
+      'images/img_049.jpg',
+      'images/img_050.jpg'
+    ]
+  }
+,
+  {
+    id: 'p5',
+    title: 'Admin Panel',
+    tags: ['Panel', 'Insurance', 'Brief'],
+    coverBg: '#FFE8E0',
+    cover: 'images/img_051.jpg',
+    images: [
+      'images/img_052.jpg',
+      'images/img_053.jpg',
+      'images/img_054.jpg'
+    ]
+  }
+,
+  {
+    id: 'p6',
+    title: 'Super Application Separ',
+    tags: ['Application', 'Brief', 'Insurance'],
+    coverBg: '#EDE7F6',
+    cover: 'images/img_055.jpg',
+    images: [
+      'images/img_056.jpg',
+      'images/img_057.jpg',
+      'images/img_058.jpg'
+    ]
+  }
+  // ── ADD MORE PROJECTS HERE ──
+];
+
+// ── NAVIGATION ──
+let pageHistory = ['home'];
+let currentPage = 'home';
+
+function showPage(page, projectId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+
+  if (page !== currentPage) {
+    pageHistory.push(page);
+    currentPage = page;
+  }
+
+  const backBar = document.getElementById('back-bar');
+  backBar.style.display = page === 'home' ? 'none' : 'block';
+
+  if (page === 'case' && projectId) {
+    const proj = projects.find(p => p.id === projectId);
+    if (proj) {
+      document.getElementById('case-title').textContent = proj.title;
+      document.getElementById('case-tags').innerHTML =
+        proj.tags.map(t => `<span class="tag">${t}</span>`).join('');
+      document.getElementById('case-images').innerHTML =
+        proj.images.map((src, i) =>
+          `<img src="${src}" alt="${proj.title} — page ${i + 1}" loading="lazy">`
+        ).join('');
+    }
+  }
+
+  if (page === 'home') renderHomeGrid();
+  if (page === 'all')  renderAllGrid();
+
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  // Close mobile menu on navigation
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburger = document.getElementById('hamburger');
+  if (mobileMenu) { mobileMenu.classList.remove('open'); }
+  if (hamburger) { hamburger.classList.remove('open'); }
+}
+
+function goBack() {
+  pageHistory.pop();
+  const prev = pageHistory[pageHistory.length - 1] || 'home';
+  pageHistory.pop();
+  showPage(prev);
+}
+
+function scrollToSection(id) {
+  if (currentPage !== 'home') {
+    showPage('home');
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }, 60);
+  } else {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// ── CARD BUILDER ──
+function createCard(proj) {
+  return `
+    <div class="project-card" onclick="openProject('${proj.id}')">
+      <div class="card-thumb" style="background:${proj.coverBg}">
+        <img src="${proj.cover}" alt="${proj.title}" loading="lazy">
+      </div>
+      <div class="card-body">
+        <div class="card-title">${proj.title}</div>
+        <div class="card-tags">${proj.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      </div>
+    </div>`;
+}
+
+function openProject(id) { showPage('case', id); }
+function renderHomeGrid() { document.getElementById('home-grid').innerHTML = projects.slice(0, 4).map(createCard).join(''); }
+function renderAllGrid()  { document.getElementById('all-grid').innerHTML  = projects.map(createCard).join(''); }
+
+// Init
+renderHomeGrid();
+
+function toggleMenu() {
+  const btn = document.getElementById('hamburger');
+  const menu = document.getElementById('mobile-menu');
+  btn.classList.toggle('open');
+  menu.classList.toggle('open');
+}
+
+</script>
+
+<!-- ══════════════════════════════════════
+     CONTACT
+══════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="contact-page">
+    <h1 class="page-heading" style="margin-bottom:2rem;">Contact Me</h1>
+
+    <div class="contact-card">
+      <img class="contact-photo" src="images/img_010.jpg" alt="Mahshid Zahedi">
+      <div class="contact-info">
+        <div class="contact-status">
+          <span class="status-badge">
+            <span class="status-dot"></span>
+            open to work right now
+          </span>
+          <span class="contact-location">
+            <i class="ph ph-map-pin" style="font-size:18px; color:#202020;"></i>
+            Tehran, Iran
+          </span>
+        </div>
+        <p class="contact-dm">DM me on <a href="https://www.linkedin.com/in/mahshid-zahedi-885807258" target="_blank">LinkedIn</a></p>
+        <p class="contact-via">Or contact me via :</p>
+        <div class="contact-methods">
+          <span class="contact-method">
+            <i class="ph ph-envelope" style="font-size:18px;"></i>
+            Mahshidzahedi79@gmail.com
+          </span>
+          <span class="contact-method">
+            <i class="ph ph-phone" style="font-size:18px;"></i>
+            +989192663742
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-quote">
+      Thoughtful products are rarely built alone. Let's collaborate and create something meaningful.
+    </div>
+  </div>
+</div>
+
+
+<footer id="site-footer">
+    <div class="footer-inner">
+      <span class="footer-name">Mahshid Zahedi</span>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/in/mahshid-zahedi-885807258" target="_blank" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://dribbble.com/MahshidZahedii" target="_blank" title="Dribbble">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+        </a>
+        <a href="https://www.behance.net/mahshidzahedi" target="_blank" title="Behance">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.051-1.598-5.051-5.505 0-3.636 1.992-5.651 5.12-5.651 3.21 0 4.893 1.98 5.032 5.407.006.172.001 1.35 0 1.397h-7.189c.183 2.312 1.715 2.361 2.304 2.361.671 0 1.315-.313 1.617-1.009H23.7zm-7.187-3.9h4.196c-.001-2.026-1.226-2.265-2.067-2.265-.993 0-1.979.52-2.129 2.265zM7.468 11.586h-3.5V8.2h3.5c1.397 0 2.29.706 2.29 1.673 0 .967-.893 1.713-2.29 1.713zm-.198 5.8H3.968v-3.69h3.302c1.536 0 2.516.686 2.516 1.845 0 1.159-.98 1.845-2.516 1.845zM3 6H0v13h8.067c4.067 0 5.933-2.048 5.933-4.258 0-2.21-1.527-3.332-2.856-3.584 1.075-.44 2.167-1.438 2.167-3.26C13.311 6 9.844 6 9.844 6H3z"/></svg>
+        </a>
+      </div>
+      <div class="footer-links">
+        <a onclick="showPage('all')">Designs</a>
+        <a onclick="showPage('about')">About Me</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
