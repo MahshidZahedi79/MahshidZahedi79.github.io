@@ -482,6 +482,9 @@
 
   @media (max-width: 768px) { .about-story { grid-template-columns: 1fr; } }
   .about-story-text h2 { font-size: 1.5rem; font-weight: 600; color: #202020; margin-bottom: 1.1rem; }
+  @media (max-width: 640px) {
+    .about-story-text h2, .about-section h2 { font-size: 1.05rem; font-weight: 600; }
+  }
   .about-story-text p { font-size: 0.95rem; color: #202020; line-height: 1.85; }
   .about-photo-wrap { position: relative; }
   .about-photo-wrap img.profile-photo {
@@ -852,7 +855,7 @@
 <div class="page" id="page-about">
   <div class="about-page">
 
-    <h1 class="page-heading" style="margin-bottom:2rem;">About Me</h1>
+    <h1 class="page-heading fade-up" style="margin-bottom:2rem;">About Me</h1>
 
     <!-- My Story -->
     <div class="about-story">
@@ -1188,10 +1191,10 @@ function toggleMenu() {
 ══════════════════════════════════════ -->
 <div class="page" id="page-contact">
   <div class="contact-page">
-    <h1 class="page-heading" style="margin-bottom:2rem;">Contact Me</h1>
+    <h1 class="page-heading fade-up" style="margin-bottom:2rem;">Contact Me</h1>
 
     <div class="contact-card">
-      <img class="contact-photo" src="images/img_010.jpg" alt="Mahshid Zahedi">
+      <img class="contact-photo" src="images/img_010.png" alt="Mahshid Zahedi">
       <div class="contact-info">
         <div class="contact-status">
           <span class="status-badge">
