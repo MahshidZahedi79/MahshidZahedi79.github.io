@@ -1131,6 +1131,17 @@ function showPage(page, projectId) {
   if (page === 'all')  renderAllGrid();
 
   window.scrollTo({ top: 0, behavior: 'instant' });
+
+  // Re-trigger fade-up animations on the newly shown page
+  const activePage = document.getElementById('page-' + page);
+  if (activePage) {
+    activePage.querySelectorAll('.fade-up').forEach(el => {
+      el.style.animation = 'none';
+      el.offsetHeight; // force reflow
+      el.style.animation = '';
+    });
+  }
+
   // Close mobile menu on navigation
   const mobileMenu = document.getElementById('mobile-menu');
   const hamburger = document.getElementById('hamburger');
